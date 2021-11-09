@@ -6,7 +6,12 @@ const stylesDir = path.join(__dirname, 'styles');
 const bundleDir = path.join(__dirname, 'project-dist');
 
 fs.readdir(stylesDir, (err, files) => {   
-       
+
+     //удаление файла (актуализация содержимого)
+     fs.unlink(path.join(bundleDir, 'bundle.css'), err => {
+        if (err) {if (err.code == 'EEXIST');} //игнорируем ошибку
+    }); 
+    
     files.forEach(file => {
 
         //абсолютный путь до файла
